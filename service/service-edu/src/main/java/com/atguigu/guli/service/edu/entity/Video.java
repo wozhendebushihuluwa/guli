@@ -1,9 +1,8 @@
 package com.atguigu.guli.service.edu.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.atguigu.guli.service.base.model.BaseEntity;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -49,6 +48,7 @@ public class Video extends BaseEntity {
     private Long playCount;
 
     @ApiModelProperty(value = "是否可以试听：0收费 1免费")
+    @TableField(value = "is_free")
     private Boolean free;
 
     @ApiModelProperty(value = "视频时长（秒）")

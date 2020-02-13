@@ -35,6 +35,4 @@ public class Chapter extends BaseEntity {
 
     @ApiModelProperty(value = "显示排序")
     private Integer sort;
-
-
 }

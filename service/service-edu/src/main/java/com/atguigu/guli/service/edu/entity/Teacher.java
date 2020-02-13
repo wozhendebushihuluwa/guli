@@ -1,16 +1,16 @@
 package com.atguigu.guli.service.edu.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.atguigu.guli.service.base.model.BaseEntity;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.util.Date;
 
 /**
  * <p>
@@ -29,10 +29,10 @@ public class Teacher extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "讲师姓名")
+    @ApiModelProperty(value = "讲师姓名",example = "zhx")
     private String name;
 
-    @ApiModelProperty(value = "讲师简介")
+    @ApiModelProperty(value = "讲师简介",example = "好人")
     private String intro;
 
     @ApiModelProperty(value = "讲师资历,一句话说明讲师")
@@ -47,11 +47,12 @@ public class Teacher extends BaseEntity {
     @ApiModelProperty(value = "排序")
     private Integer sort;
 
-    @ApiModelProperty(value = "入驻时间")
+    @ApiModelProperty(value = "入驻时间",example = "2020-02-20")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date joinDate;
 
     @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
-    @TableLogic
+    @TableField(value = "is_deleted")
     private Boolean deleted;
 
 
