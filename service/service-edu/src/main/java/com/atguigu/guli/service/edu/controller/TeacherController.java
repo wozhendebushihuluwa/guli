@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -22,8 +23,10 @@ import java.util.List;
  * @author ZHX
  * @since 2020-02-12
  */
+
 @RestController
 @RequestMapping("admin/edu/teacher")
+@CrossOrigin
 public class TeacherController {
 
     @Autowired
@@ -39,8 +42,17 @@ public class TeacherController {
     @DeleteMapping("remove/{id}")
     public R removeByTeacherId(@PathVariable String id){
         boolean flag = this.teacherService.removeById(id);
-        return R.ok();
+        return R.ok().message("删除讲师成功");
     }
+
+    @DeleteMapping("batch-remove")
+    public R removeByIdList(
+            @ApiParam(name = "idList",value = "讲师id列表",required = true)
+            @RequestBody List<String> idList){
+        boolean flag = this.teacherService.removeByIds(idList);
+        return R.ok().message("批量删除讲师成功");
+    }
+
 
     @ApiOperation(value = "分页讲师列表")
     @GetMapping("list/{page}/{limit}")
@@ -76,7 +88,7 @@ public class TeacherController {
             @ApiParam(name = "id",value = "讲师Id",required = true)
             @PathVariable String id){
         Teacher teacher = this.teacherService.getById(id);
-        return R.ok().data("teacher",teacher);
+        return R.ok().data("item",teacher);
     }
     @ApiOperation(value = "修改教师信息")
     @PutMapping("update")
@@ -87,5 +99,15 @@ public class TeacherController {
         boolean b = this.teacherService.updateById(teacher);
         return R.ok().message("修改教师信息成功");
     }
+
+    @GetMapping("list/name/{key}")
+    public R selectNameListByKey(
+            @ApiParam(name = "key",value = "查询关键字",required = true)
+            @PathVariable String key
+           ){
+        List<Map<String, Object>> nameList = teacherService.selectNameListByKey(key);
+        return R.ok().data("nameList",nameList);
+    }
+
 }
 
