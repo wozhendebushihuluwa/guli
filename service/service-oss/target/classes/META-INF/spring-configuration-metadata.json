@@ -1,0 +1,32 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.atguigu.guli.service.oss.util.OssProperties",
+      "name": "aliyun.oss.file",
+      "type": "com.atguigu.guli.service.oss.util.OssProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.atguigu.guli.service.oss.util.OssProperties",
+      "name": "aliyun.oss.file.bucketname",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.atguigu.guli.service.oss.util.OssProperties",
+      "name": "aliyun.oss.file.endpoint",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.atguigu.guli.service.oss.util.OssProperties",
+      "name": "aliyun.oss.file.keyid",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.atguigu.guli.service.oss.util.OssProperties",
+      "name": "aliyun.oss.file.keysecret",
+      "type": "java.lang.String"
+    }
+  ]
+}
