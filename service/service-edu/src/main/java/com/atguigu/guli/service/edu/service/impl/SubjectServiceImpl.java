@@ -73,8 +73,6 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
                 subjectLevelTwo.setParentId(parentId);
                 baseMapper.insert(subjectLevelTwo);
             }
-
-
         }
     }
 
