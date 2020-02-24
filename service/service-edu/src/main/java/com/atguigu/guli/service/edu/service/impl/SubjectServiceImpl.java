@@ -2,6 +2,7 @@ package com.atguigu.guli.service.edu.service.impl;
 
 import com.atguigu.guli.common.base.util.ExcelImportUtil;
 import com.atguigu.guli.service.edu.entity.Subject;
+import com.atguigu.guli.service.edu.entity.vo.SubjectVo;
 import com.atguigu.guli.service.edu.mapper.SubjectMapper;
 import com.atguigu.guli.service.edu.service.SubjectService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -9,11 +10,14 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -74,6 +78,51 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
                 baseMapper.insert(subjectLevelTwo);
             }
         }
+    }
+
+    @Override
+    public List<SubjectVo> nestedList() {
+
+        List<SubjectVo> subjectVoList = new ArrayList<>();
+        //获取所有分类的数据
+        QueryWrapper<Subject> queryWrapper = new QueryWrapper<Subject>();
+        queryWrapper.orderByAsc("sort","id");
+        List<Subject> subjectList = baseMapper.selectList(queryWrapper);
+
+        //分别获取一级分类和二级分类
+        ArrayList<Subject> subjectLevelOneList = new ArrayList<>();
+        ArrayList<Subject> subjectLevelTwoList = new ArrayList<>();
+        for (Subject subject : subjectList) {
+            if(subject.getParentId().equals("0")){
+                subjectLevelOneList.add(subject);//填充一级类别
+            }else {
+                subjectLevelTwoList.add(subject);//填充二级类别
+            }
+        }
+        //填充vo数据：一级类别
+        for (Subject subjectLevelOne : subjectLevelOneList) {
+            SubjectVo subjectVoLevelOne = new SubjectVo();
+            BeanUtils.copyProperties(subjectLevelOne,subjectVoLevelOne);
+            subjectVoList.add(subjectVoLevelOne);
+
+            //填充children:二级类别
+            List<SubjectVo> subjectVoLevelTwoList = new ArrayList<>();
+            for (Subject subjectLevelTwo : subjectLevelTwoList) {
+                if(subjectLevelOne.getId().equals(subjectLevelTwo.getParentId())){
+                    SubjectVo subjectVoLevelTwo = new SubjectVo();
+                    BeanUtils.copyProperties(subjectLevelTwo,subjectVoLevelTwo);
+                    subjectVoLevelTwoList.add(subjectVoLevelTwo);
+                }
+            }
+            subjectVoLevelOne.setChildren(subjectVoLevelTwoList);
+        }
+        return subjectVoList;
+    }
+
+    @Override
+    public List<SubjectVo> nestedList2() {
+
+        return baseMapper.selectNestedByParentId("0");
     }
 
     //判断一级分类是否重复

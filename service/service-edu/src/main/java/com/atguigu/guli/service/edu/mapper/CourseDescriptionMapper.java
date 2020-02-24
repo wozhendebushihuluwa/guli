@@ -2,6 +2,7 @@ package com.atguigu.guli.service.edu.mapper;
 
 import com.atguigu.guli.service.edu.entity.CourseDescription;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Component;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author ZHX
  * @since 2020-02-12
  */
+@Component
 public interface CourseDescriptionMapper extends BaseMapper<CourseDescription> {
 
 }
