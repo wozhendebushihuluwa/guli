@@ -2,6 +2,7 @@ package com.atguigu.guli.service.edu.service.impl;
 
 import com.atguigu.guli.service.edu.entity.*;
 import com.atguigu.guli.service.edu.entity.form.CourseInfoForm;
+import com.atguigu.guli.service.edu.entity.vo.CoursePublishVo;
 import com.atguigu.guli.service.edu.entity.vo.CourseQueryVo;
 import com.atguigu.guli.service.edu.mapper.*;
 import com.atguigu.guli.service.edu.service.CourseService;
@@ -153,6 +154,19 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
         //课程：course
         baseMapper.deleteById(id);
+    }
+
+    @Override
+    public CoursePublishVo getCoursePublishVoById(String id) {
+        return baseMapper.selectCoursePublishVoById(id);
+    }
+
+    @Override
+    public void publishCourseById(String id) {
+        Course course = new Course();
+        course.setId(id);
+        course.setStatus(Course.COURSE_NORMAL);
+        baseMapper.updateById(course);
     }
 
 }
