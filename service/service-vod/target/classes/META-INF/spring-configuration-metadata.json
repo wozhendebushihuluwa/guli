@@ -1,0 +1,22 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.atguigu.guli.service.vod.util.VodProperties",
+      "name": "aliyun.vod.file",
+      "type": "com.atguigu.guli.service.vod.util.VodProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.atguigu.guli.service.vod.util.VodProperties",
+      "name": "aliyun.vod.file.keyid",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.atguigu.guli.service.vod.util.VodProperties",
+      "name": "aliyun.vod.file.keysecret",
+      "type": "java.lang.String"
+    }
+  ]
+}
