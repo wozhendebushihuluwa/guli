@@ -1,5 +1,6 @@
 package com.atguigu.guli.service.vod.controller;
 
+import com.aliyuncs.exceptions.ClientException;
 import com.atguigu.guli.common.base.result.R;
 import com.atguigu.guli.common.base.result.ResultCodeEnum;
 import com.atguigu.guli.common.base.util.ExceptionUtils;
@@ -42,6 +43,21 @@ public class VideoController {
             throw new GuliException(ResultCodeEnum.VIDEO_UPLOAD_TOMCAT_ERROR);
         }
 
+    }
+
+    @ApiOperation(value = "阿里云视频删除")
+    @DeleteMapping("remove/{videoId}")
+    public R removeVideo(
+            @ApiParam(name = "videoId",value = "阿里云视频ID",required = true)
+            @PathVariable String videoId
+    ){
+        try {
+            this.videoService.removeVideo(videoId);
+            return R.ok().message("视频删除成功");
+        } catch (ClientException e) {
+            log.error(ExceptionUtils.getMessage(e));
+            throw new GuliException(ResultCodeEnum.VIDEO_DELETE_ALIYUN_ERROR);
+        }
     }
 
 }

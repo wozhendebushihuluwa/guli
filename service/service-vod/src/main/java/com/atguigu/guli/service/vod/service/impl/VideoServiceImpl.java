@@ -3,9 +3,14 @@ package com.atguigu.guli.service.vod.service.impl;
 import com.aliyun.vod.upload.impl.UploadVideoImpl;
 import com.aliyun.vod.upload.req.UploadStreamRequest;
 import com.aliyun.vod.upload.resp.UploadStreamResponse;
+import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.exceptions.ClientException;
+import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
+import com.aliyuncs.vod.model.v20170321.DeleteVideoResponse;
 import com.atguigu.guli.common.base.result.ResultCodeEnum;
 import com.atguigu.guli.service.base.exception.GuliException;
 import com.atguigu.guli.service.vod.service.VideoService;
+import com.atguigu.guli.service.vod.util.AliyunVodSDKUtils;
 import com.atguigu.guli.service.vod.util.VodProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +45,16 @@ public class VideoServiceImpl implements VideoService {
         }
         return videoId;
 
+    }
+
+    @Override
+    public void removeVideo(String videoId) throws ClientException {
+        DefaultAcsClient client = AliyunVodSDKUtils.initVodClient(
+                vodProperties.getKeyid(),
+                vodProperties.getKeysecret());
+
+        DeleteVideoRequest request = new DeleteVideoRequest();
+        request.setVideoIds(videoId);
+        DeleteVideoResponse response = client.getAcsResponse(request);
     }
 }
