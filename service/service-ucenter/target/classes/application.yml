@@ -1,0 +1,46 @@
+server:
+  port: 8150 # 服务端口
+
+spring:
+  profiles:
+    active: dev # 环境设置
+  application:
+    name: guli-ucenter # 服务名
+  datasource: # mysql数据库连接
+    driver-class-name: com.mysql.jdbc.Driver
+    password: 123
+    url: jdbc:mysql://localhost:3306/db190805_guli_ucenter?characterEncoding=utf-8&useSSL=false
+    username: root
+    type: com.zaxxer.hikari.HikariDataSource # 连接池类型
+    hikari:
+      pool-name: GuliHikariPool # 连接池名称，默认HikariPool-1
+      maximum-pool-size: 12 # 最大连接数，小于等于0会被重置为默认值10；大于零小于1会被重置为minimum-idle的值
+      connection-timeout: 60000 # 连接超时时间:毫秒，小于250毫秒，否则被重置为默认值30秒
+      minimum-idle: 10 # 最小空闲连接，默认值10，小于0或大于maximum-pool-size，都会重置为maximum-pool-size
+      idle-timeout: 500000 # 空闲连接超时时间，默认值600000（10分钟），大于等于max-lifetime且max-lifetime>0，会被重置为0；不等于0且小于10秒，会被重置为10秒。
+      # 只有空闲连接数大于最大连接数且空闲时间超过该值，才会被释放
+      max-lifetime: 540000 # 连接最大存活时间.不等于0且小于30秒，会被重置为默认值30分钟.设置应该比mysql设置的超时时间短
+      connection-test-query: SELECT 1 #连接测试查询
+  jackson: #返回json的全局时间格式
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #mybatis日志
+  #mybatis-plus:
+  mapper-locations: classpath:com/atguigu/guli/service/ucenter/mapper/xml/*.xml #配置mapper xml文件的路径
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9110/eureka/
+  instance:
+    prefer-ip-address: true
+    # 心跳检测检测与续约时间
+    # 测试时将值设置设置小些，保证服务关闭后注册中心能及时踢出服务
+    # 配置说明
+    # lease-renewal-interval-in-seconds 每间隔5s，向服务端发送一次心跳，证明自己依然”存活“，默认 30
+    lease-renewal-interval-in-seconds: 5
+    # lease-expiration-duration-in-seconds  告诉服务端，如果我10s之内没有给你发心跳，就代表我“死”了，将我踢出掉，默认 90
+    lease-expiration-duration-in-seconds: 10

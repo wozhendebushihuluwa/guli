@@ -1,0 +1,33 @@
+server:
+  port: 9110 # 服务端口
+
+spring:
+  profiles:
+    active: dev # 环境设置
+  application:
+    name: guli-eureka # 服务名
+
+
+#Eureka客户端与Eureka服务端进行通信的地址
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+#是否检索服务。表示是否从Eureka Server获取注册信息，默认为true。
+#如果这是一个单点的 Eureka Server，不需要同步其他节点的数据，可以设为false。
+# 单节点关闭
+    fetch-registry: false
+#属性表示是否将自己注册到Eureka Server， 默认为true。
+#由于当前应用就是Eureka Server， 因此设为 false；
+    register-with-eureka: false
+
+#eureka:
+  server:
+    #关闭保护机制，以确保注册中心将不可用的实例正确剔除
+    enable-self-preservation: false
+    #（代表是5秒，单位是毫秒,清理失效服务的间隔。默认 60 * 1000 ）
+    eviction-interval-timer-in-ms: 5000
