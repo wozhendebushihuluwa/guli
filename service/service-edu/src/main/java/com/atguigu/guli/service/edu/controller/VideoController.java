@@ -7,6 +7,7 @@ import com.atguigu.guli.service.edu.service.VideoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("admin/edu/video")
 @CrossOrigin
 @Api(description = "课时管理")
+@Slf4j
 public class VideoController {
 
     @Autowired
@@ -66,5 +68,6 @@ public class VideoController {
         videoService.removeVideoById(id);
         return R.ok();
     }
+
 }
 

@@ -44,3 +44,8 @@ eureka:
     lease-renewal-interval-in-seconds: 5
     # lease-expiration-duration-in-seconds  告诉服务端，如果我10s之内没有给你发心跳，就代表我“死”了，将我踢出掉，默认 90
     lease-expiration-duration-in-seconds: 10
+
+#开启熔断保护：默认false
+feign:
+  hystrix:
+    enabled: true

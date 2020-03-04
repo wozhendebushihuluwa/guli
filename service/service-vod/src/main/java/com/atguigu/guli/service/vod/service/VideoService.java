@@ -3,6 +3,7 @@ package com.atguigu.guli.service.vod.service;
 import com.aliyuncs.exceptions.ClientException;
 
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 
 public interface VideoService {
@@ -16,4 +17,6 @@ public interface VideoService {
     Map<String, Object> refreshVideoUploadAuth(String videoId) throws ClientException;
 
     String getVideoPlayAuth(String videoId) throws ClientException;
+
+    void removeVideoByIdList(List<String> videoSourceIdList) throws ClientException;
 }

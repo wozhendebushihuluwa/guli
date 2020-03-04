@@ -1,5 +1,7 @@
 package com.atguigu.guli.service.edu.service.impl;
 
+import com.atguigu.guli.service.edu.client.OssClient;
+import com.atguigu.guli.service.edu.client.VodClient;
 import com.atguigu.guli.service.edu.entity.*;
 import com.atguigu.guli.service.edu.entity.form.CourseInfoForm;
 import com.atguigu.guli.service.edu.entity.vo.CoursePublishVo;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +45,10 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     private CommentMapper commentMapper;
     @Autowired
     private CourseCollectMapper courseCollectMapper;
+    @Autowired
+    private OssClient ossClient;
+    @Autowired
+    private VodClient vodClient;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -129,11 +136,24 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
         //删除关联数据
 
-        //TODO 删除封面：OSS
+        //删除封面：OSS
         //在此处调用oss中的删除图片文件的接口
+        Course course = baseMapper.selectById(id);
+        String cover = course.getCover();
+        ossClient.removeFile(cover);
 
-        //TODO 删除视频：VOD
+        // 删除视频：VOD
         //在此处调用vod中的删除视频文件的接口
+        QueryWrapper<Video> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("video_source_id");
+        queryWrapper.eq("course_id", id);
+        List<Map<String, Object>> maps = videoMapper.selectMaps(queryWrapper);
+        List<String> videoSourceIdList = new ArrayList<>();
+        for (Map<String, Object> map : maps) {
+            String videoSourceId = (String)map.get("video_source_id");
+            videoSourceIdList.add(videoSourceId);
+        }
+        vodClient.removeVideoByIdList(videoSourceIdList);
 
         //收藏信息：course_collect
         QueryWrapper<CourseCollect> courseCollectQueryWrapper = new QueryWrapper<>();

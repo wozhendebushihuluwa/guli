@@ -13,6 +13,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  * 网站统计日数据 服务实现类
@@ -55,5 +60,34 @@ public class DailyServiceImpl extends ServiceImpl<DailyMapper, Daily> implements
         daily.setDateCalculated(day);
 
         baseMapper.insert(daily);
+    }
+
+    @Override
+    public Map<String, Object> getChartData(String begin, String end, String type) {
+
+        Map<String, Object> map = new HashMap<>();
+
+//      表 statistics_daily: 列 date_calculated, type，条件 begin、end
+        QueryWrapper<Daily> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("date_calculated", type);
+        queryWrapper.between("date_calculated", begin, end);
+        queryWrapper.orderByAsc("date_calculated");
+
+        //创建列表
+        List<String> xList = new ArrayList<>();//日期列表
+        List<Integer> yList = new ArrayList<>();//数据列表
+
+        List<Map<String, Object>> mapsData = baseMapper.selectMaps(queryWrapper);
+        for (Map<String, Object> data : mapsData) {
+            String dateCalculated = (String)data.get("date_calculated");
+            Integer count = (Integer)data.get(type);
+
+            xList.add(dateCalculated);
+            yList.add(count);
+        }
+
+        map.put("xData", xList);
+        map.put("yData", yList);
+        return map;
     }
 }

@@ -1,11 +1,13 @@
 package com.atguigu.guli.service.edu.service.impl;
 
+import com.atguigu.guli.service.edu.client.OssClient;
 import com.atguigu.guli.service.edu.entity.Video;
 import com.atguigu.guli.service.edu.entity.form.VideoInfoForm;
 import com.atguigu.guli.service.edu.mapper.VideoMapper;
 import com.atguigu.guli.service.edu.service.VideoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,6 +20,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements VideoService {
+
+    @Autowired
+    private OssClient ossClient;
 
     @Override
     public void saveVideoInfo(VideoInfoForm videoInfoForm) {
