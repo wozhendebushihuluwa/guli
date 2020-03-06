@@ -17,6 +17,7 @@
         <module>service-vod</module>
         <module>service-statistics</module>
         <module>service-ucenter</module>
+        <module>service-sms</module>
     </modules>
 
     <dependencies>

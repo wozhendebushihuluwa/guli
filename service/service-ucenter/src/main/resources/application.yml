@@ -24,6 +24,18 @@ spring:
   jackson: #返回json的全局时间格式
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+#spring:
+  redis:
+    host: 192.168.78.129
+    port: 6379
+    database: 0
+    timeout: 1800000
+    lettuce:
+      pool:
+        max-active: 20 #最大连接数
+        max-wait: -1    #最大阻塞等待时间(负数表示没限制)
+        max-idle: 5    #最大空闲
+        min-idle: 0     #最小空闲
 
 mybatis-plus:
   configuration:
@@ -44,3 +56,11 @@ eureka:
     lease-renewal-interval-in-seconds: 5
     # lease-expiration-duration-in-seconds  告诉服务端，如果我10s之内没有给你发心跳，就代表我“死”了，将我踢出掉，默认 90
     lease-expiration-duration-in-seconds: 10
+#阿里云短信
+aliyun:
+  sms:
+    regionid: cn-hangzhou
+    keyid: LTAI4Fg8wif9r4Zxr518A2UL
+    keysecret: wfi88Gp2mdIC1xpNZKKkQl4MNUrn8z
+    templatecode: SMS_185240301
+    signname: 谷粒教育

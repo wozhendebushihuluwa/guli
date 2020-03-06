@@ -34,5 +34,6 @@ public class MemberController {
         Integer count = memberService.countRegisterByDay(day);
         return R.ok().data("registerCount", count);
     }
+
 }
 
