@@ -32,7 +32,7 @@ public class FileController {
             @ApiParam(name = "file",value = "文件",required = true)
             @RequestParam("file") MultipartFile file,
             @ApiParam(name = "module",value = "模块",required = true)
-            @RequestParam("module") String module){
+        @RequestParam("module") String module){
 
         try {
             String originalFilename = file.getOriginalFilename();

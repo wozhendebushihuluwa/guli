@@ -4,10 +4,17 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common-util/common-util.iml" filepath="$PROJECT_DIR$/common/common-util/common-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/infrastructure/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/infrastructure/eureka-server/eureka-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/guli.iml" filepath="$PROJECT_DIR$/guli.iml" />
+      <module fileurl="file://$PROJECT_DIR$/infrastructure/infrastructure.iml" filepath="$PROJECT_DIR$/infrastructure/infrastructure.iml" />
       <module fileurl="file://$PROJECT_DIR$/service/service.iml" filepath="$PROJECT_DIR$/service/service.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/service-base/service-base.iml" filepath="$PROJECT_DIR$/common/service-base/service-base.iml" />
       <module fileurl="file://$PROJECT_DIR$/service/service-edu/service-edu.iml" filepath="$PROJECT_DIR$/service/service-edu/service-edu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/service-oss/service-oss.iml" filepath="$PROJECT_DIR$/service/service-oss/service-oss.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/service-sms/service-sms.iml" filepath="$PROJECT_DIR$/service/service-sms/service-sms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/service-statistics/service-statistics.iml" filepath="$PROJECT_DIR$/service/service-statistics/service-statistics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/service-ucenter/service-ucenter.iml" filepath="$PROJECT_DIR$/service/service-ucenter/service-ucenter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/service-vod/service-vod.iml" filepath="$PROJECT_DIR$/service/service-vod/service-vod.iml" />
     </modules>
   </component>
 </project>

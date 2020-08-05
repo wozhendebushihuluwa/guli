@@ -33,4 +33,6 @@ public interface MemberService extends IService<Member> {
      * @return 用户登录信息
      */
     LoginInfoVo getLoginInfoByJwtToken(String jwtToken);
+
+    Member getByOpenid(String openid);
 }

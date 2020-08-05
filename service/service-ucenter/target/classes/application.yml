@@ -64,3 +64,19 @@ aliyun:
     keysecret: wfi88Gp2mdIC1xpNZKKkQl4MNUrn8z
     templatecode: SMS_185240301
     signname: 谷粒教育
+#wx:
+#  open:
+#    # 微信开放平台 appid
+#    appid: wxc606fb748aedee7c
+#    # 微信开放平台 appsecret
+#    appsecret: 073e8e1117c1054b14586c8aa922bc9c
+#    # 微信开放平台 重定向url（guli.shop需要在微信开放平台配置）
+#    redirecturi: http://helen.free.idcfengye.com/api/ucenter/wx/callback
+wx:
+  open:
+    # 微信开放平台 appid
+    appid: wxed9954c01bb89b47
+    # 微信开放平台 appsecret
+    appsecret: a7482517235173ddb4083788de60b90e
+    # 微信开放平台 重定向url（guli.shop需要在微信开放平台配置）
+    redirecturi: http://guli.shop/api/ucenter/wx/callback

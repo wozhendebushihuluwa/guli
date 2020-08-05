@@ -1,0 +1,27 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.atguigu.guli.service.ucenter.util.UcenterProperties",
+      "name": "wx.open",
+      "type": "com.atguigu.guli.service.ucenter.util.UcenterProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.atguigu.guli.service.ucenter.util.UcenterProperties",
+      "name": "wx.open.appid",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.atguigu.guli.service.ucenter.util.UcenterProperties",
+      "name": "wx.open.appsecret",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.atguigu.guli.service.ucenter.util.UcenterProperties",
+      "name": "wx.open.redirecturi",
+      "type": "java.lang.String"
+    }
+  ]
+}
